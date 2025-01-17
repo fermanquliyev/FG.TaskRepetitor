@@ -1,0 +1,41 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<Authors>Farman Guliyev</Authors>
+		<Company>FG</Company>
+		<PackageId>FG.TaskRepetitor</PackageId>
+		<Version>1.0.0</Version>
+		<Description>The Task Repetitor library provides a simple and flexible way to schedule and execute repetitive tasks, both synchronous and asynchronous, in .NET applications.</Description>
+		<PackageTags>backgroundworker;task;scheduler;queue; .NET; ASP.NET; utility;framework;</PackageTags>
+		<RepositoryUrl>https://github.com/fermanquliyev/FG.TaskRepetitor</RepositoryUrl>
+		<Title>FG.MiddlewareCollection</Title>
+		<PackageIcon>PackageIcon.png</PackageIcon>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<Copyright>Copyright ©2025</Copyright>
+		<PackageProjectUrl>https://github.com/fermanquliyev/FG.TaskRepetitor</PackageProjectUrl>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Include="..\PackageIcon.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+		<None Include="..\README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.3.0" />
+		<PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.1" />
+		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.1" />
+		<PackageReference Include="NCrontab" Version="3.3.3" />
+	</ItemGroup>
+
+</Project>
