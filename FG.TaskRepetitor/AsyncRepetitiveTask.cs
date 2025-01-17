@@ -22,9 +22,9 @@
         /// <summary>
         /// Executes the repetitive task asynchronously.
         /// </summary>
-        public abstract Task ExecuteAsync();
+        public abstract Task ExecuteAsync(CancellationToken stoppingToken = default);
 
-        public virtual Task OnErrorAsync(Exception ex)
+        public virtual Task OnErrorAsync(Exception ex, CancellationToken stoppingToken = default)
         {
             return Task.CompletedTask;
         }

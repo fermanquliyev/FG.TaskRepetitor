@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System.Collections.Concurrent;
 
 namespace FG.TaskRepetitor
 {
@@ -8,10 +9,11 @@ namespace FG.TaskRepetitor
     {
         private readonly IServiceProvider serviceProvider = serviceProvider;
         private readonly ILogger<TaskRepetitorHostedService> logger = logger;
-        private static readonly Dictionary<Type, DateTime> NextRunTimes = new();
+        private static readonly ConcurrentDictionary<Type, DateTime> NextRunTimes = new();
 
         public override Task StartAsync(CancellationToken cancellationToken)
         {
+            logger.LogInformation("Initializing {HostedService} at {DateTime}", nameof(TaskRepetitorHostedService), DateTime.Now);
             using (var scope = serviceProvider.CreateScope())
             {
                 var repetitiveTasks = scope.ServiceProvider.GetServices<RepetitiveTask>();
@@ -35,6 +37,7 @@ namespace FG.TaskRepetitor
                     {
                         try
                         {
+                            logger.LogInformation("Executing task {TaskType} at {DateTime}", task.GetType().Name, DateTime.UtcNow);
                             task.Execute();
                             task.CalculateNextRun();
                             NextRunTimes[task.GetType()] = task.NextRun;

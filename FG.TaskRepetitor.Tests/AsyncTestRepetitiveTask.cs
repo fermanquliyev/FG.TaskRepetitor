@@ -10,7 +10,7 @@ namespace FG.TaskRepetitor.Tests
     {
         public override required Schedule Schedule { get ; init ; } = Schedule.EverySecond(2);
 
-        public override async Task ExecuteAsync()
+        public override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
             using var httpClient = new HttpClient();
             var response = await httpClient.GetAsync("https://www.google.com/");
